@@ -46,7 +46,7 @@ Welcome to the End-to-End DevSecOps Kubernetes Project guide! In this comprehens
 
 ## 🏗️ AWS EC2 Architecture
 
-![Project Banner](scrennshots/2.png)
+![Project Banner](screenshots/2.png)
 
 ---
 
