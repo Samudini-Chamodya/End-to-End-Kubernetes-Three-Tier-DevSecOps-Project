@@ -1,6 +1,6 @@
 # End-to-End DevSecOps Kubernetes Three-Tier Project
 
-![Project Banner](./scrennshots/1.png)
+![Project Banner](scrennshots/1.gif)
 
 ## 🚀 Project Overview
 
@@ -46,7 +46,7 @@ Welcome to the End-to-End DevSecOps Kubernetes Project guide! In this comprehens
 
 ## 🏗️ AWS EC2 Architecture
 
-![Project Banner](./scrennshots/2.png)
+![Project Banner](scrennshots/2.png)
 
 ---
 
@@ -101,7 +101,7 @@ Create an IAM user with necessary permissions for AWS resource management.
 8. Add description → **Create access key**
 9. **Download credentials** (CSV file) and store securely
    
-   ![IAM Users](./scrennshots/3.png)
+   ![IAM Users](scrennshots/3.png)
 ---
 
 ### Step 2: Install Terraform & AWS CLI
@@ -136,7 +136,7 @@ sudo vim /etc/environment
 
 Add your AWS credentials:
 
-![Terraform Config](./scrennshots/4.png)
+![Terraform Config](scrennshots/4.png)
 
 **Note:** Restart your machine after configuration.
 
@@ -148,7 +148,7 @@ aws configure
 
 Enter your AWS credentials:
 
-![AWS Configure](./scrennshots/40.png)
+![AWS Configure](scrennshots/40.png)
 
 ---
 
@@ -165,7 +165,7 @@ cd End-to-End-Kubernetes-Three-Tier-DevSecOps-Project/Jenkins-Server-TF
 
 2. **Update `backend.tf`** with your S3 bucket and DynamoDB table names:
 
-![Backend Config](./scrennshots/41.png)
+![Backend Config](scrennshots/41.png)
 
 3. **Update PEM file name** in the configuration:
 
@@ -229,7 +229,7 @@ Navigate to `http://<Jenkins-Public-IP>:8080`
 
 #### Jenkins Dashboard
 
-![Jenkins Dashboard](./scrennshots/8.png)
+![Jenkins Dashboard](scrennshots/8.png)
 
 ---
 
@@ -254,13 +254,13 @@ Restart Jenkins after installation:
 
 Add AWS credentials:
 
-![Add AWS Credentials](./scrennshots/9.png)
+![Add AWS Credentials](scrennshots/9.png)
 
 Add GitHub credentials (Personal Access Token):
 
 All credentials:
 
-![All Credentials](./scrennshots/18.png)
+![All Credentials](scrennshots/18.png)
 
 #### Create EKS Cluster
 
@@ -277,7 +277,7 @@ aws eks update-kubeconfig --region us-east-1 --name Three-Tier-K8s-EKS-Cluster
 kubectl get nodes
 ```
 
-![Kubectl Nodes](./scrennshots/24.png)
+![Kubectl Nodes](scrennshots/24.png)
 
 ---
 
@@ -297,7 +297,7 @@ curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-cont
 aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://iam_policy.json
 ```
 
-![Create IAM Policy](./scrennshots/12.png)
+![Create IAM Policy](scrennshots/12.png)
 
 #### Create OIDC Provider
 
@@ -311,7 +311,7 @@ eksctl utils associate-iam-oidc-provider --region=us-east-1 --cluster=Three-Tier
 eksctl create iamserviceaccount --cluster=Three-Tier-K8s-EKS-Cluster --namespace=kube-system --name=aws-load-balancer-controller --role-name AmazonEKSLoadBalancerControllerRole --attach-policy-arn=arn:aws:iam::<your_account_id>:policy/AWSLoadBalancerControllerIAMPolicy --approve --region=us-east-1
 ```
 
-![Service Account](./scrennshots/11.png)
+![Service Account](scrennshots/11.png)
 
 #### Deploy AWS Load Balancer Controller
 
@@ -328,7 +328,7 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n ku
 kubectl get deployment -n kube-system aws-load-balancer-controller
 ```
 
-![LB Controller](./scrennshots/45.png)
+![LB Controller](scrennshots/45.png)
 
 ---
 
@@ -343,7 +343,7 @@ Select **Private** → Enter repository name
 
 #### View Repositories
 
-![ECR Repos](./scrennshots/13.png)
+![ECR Repos](scrennshots/13.png)
 
 
 ---
@@ -374,7 +374,7 @@ kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/v2.4.7/manifests/install.yaml
 ```
 
-![Install ArgoCD](./scrennshots/14.png)
+![Install ArgoCD](scrennshots/14.png)
 
 
 #### Verify ArgoCD Pods
@@ -404,7 +404,7 @@ Login with username `admin` and the password:
 
 #### ArgoCD Dashboard
 
-![ArgoCD Dashboard](./scrennshots/16.png)
+![ArgoCD Dashboard](scrennshots/16.png)
 
 ---
 
@@ -427,7 +427,7 @@ Login with `admin/admin`:
 
 **Administration** → **Configuration** → **Webhooks** → **Create**
 
-![Create Webhook](./scrennshots/17.png)
+![Create Webhook](scrennshots/17.png)
 
 
 Enter details:
@@ -444,12 +444,12 @@ Select **Locally**
 Use existing token
 Select **Other** and **Linux**:
 
-![Frontend Command](./scrennshots/22.png)
+![Frontend Command](scrennshots/22.png)
 
 
 #### Create Backend Project
 
-![Create Backend Project](./scrennshots/20.png)
+![Create Backend Project](scrennshots/20.png)
 
 
 #### Add SonarQube Credentials to Jenkins
@@ -459,7 +459,7 @@ Select **Other** and **Linux**:
 
 #### All Credentials
 
-![Final Credentials](./scrennshots/18.png)
+![Final Credentials](scrennshots/18.png)
 
 
 ---
@@ -546,7 +546,7 @@ kubectl get svc
 
 Navigate to `<Prometheus-LB-DNS>:9090`
 
-![Prometheus Dashboard](./scrennshots/46.png)
+![Prometheus Dashboard](scrennshots/46.png)
 
 
 #### Access Grafana
@@ -555,7 +555,7 @@ Navigate to Grafana LoadBalancer DNS
 
 Login: `admin` / `prom-operator`
 
-![Grafana Login](./scrennshots/28.png)
+![Grafana Login](scrennshots/28.png)
 
 
 #### Configure Data Source
@@ -593,7 +593,7 @@ Add Jenkinsfile:
 
 Click **Build Now**:
 
-![Backend Build Success](./scrennshots/19.png)
+![Backend Build Success](scrennshots/19.png)
 
 #### Create Frontend Pipeline
 
@@ -605,13 +605,13 @@ Add Jenkinsfile:
 ```
 #### Build Frontend Pipeline
 
-![Frontend Build Success](./scrennshots/21.png)
+![Frontend Build Success](scrennshots/21.png)
 
 #### Configure Private Repository in ArgoCD
 
 **Settings** → **Repositories** → **CONNECT REPO USING HTTPS**
 
-![Repo Connected](./scrennshots/30.png)
+![Repo Connected](scrennshots/30.png)
 
 #### Deploy Database Application
 
@@ -620,20 +620,20 @@ Click **CREATE APPLICATION**:
 
 Enter database details:
 
-![Database App Details](./scrennshots/31.png)
+![Database App Details](scrennshots/31.png)
 
 
 #### Deploy Backend Application
 
-![Backend App Details](./scrennshots/32.png)
+![Backend App Details](scrennshots/32.png)
 
 #### Deploy Frontend Application
 
-![Frontend App Details](./scrennshots/33.png)
+![Frontend App Details](scrennshots/33.png)
 
 #### Deploy Ingress Application
 
-![Ingress App Details](./scrennshots/34.png)
+![Ingress App Details](scrennshots/34.png)
 
 
 #### Configure DNS
@@ -642,26 +642,26 @@ Enter database details:
 
 Navigate to your subdomain:
 
-![Application Running](./scrennshots/35.png)
+![Application Running](scrennshots/35.png)
 
 Test functionality:
 
-![Add Record](./scrennshots/39.png)
+![Add Record](scrennshots/39.png)
 
 #### Monitor with Grafana
 
 
 
-![Grafana Monitoring](./scrennshots/29.png)
+![Grafana Monitoring](scrennshots/29.png)
 
-![Grafana Monitoring](./scrennshots/38.png)
+![Grafana Monitoring](scrennshots/38.png)
 
 
 #### View ArgoCD Deployments
 
 Database deployment:
 
-![Database Deployment]![Grafana Monitoring](./scrennshots/37.png)
+![Database Deployment]![Grafana Monitoring](scrennshots/37.png)
 
 ---
 
