@@ -1,6 +1,6 @@
 # End-to-End DevSecOps Kubernetes Three-Tier Project
 
-![Project Banner](scrennshots/1.gif)
+![Project Banner](screenshots/1.gif)
 
 ## 🚀 Project Overview
 
